@@ -1,23 +1,125 @@
 aid: sibel-health
 name: Sibel Health
-description: 'Sibel Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Sibel Health, Inc. is a Chicago-based medical technology company, with an
+  international office in Seoul, South Korea, that builds the FDA-cleared ANNE platform for
+  continuous clinical-grade vital-sign monitoring. The platform pairs soft, flexible, rechargeable
+  wearable sensors — ANNE Chest (worn at the suprasternal notch), ANNE Limb, and the ADAM sensor —
+  with an ANNE Hub gateway, AI-enabled data analytics, and an integrated mobile plus cloud
+  software platform. It is used across neonatal, pediatric, maternal, adult inpatient, hospital-at-home,
+  remote patient monitoring, sleep diagnostic and decentralized clinical trial settings. Sibel
+  operates a customer-facing cloud (per-tenant hubs such as datahub.sibelhealth.com and
+  emory.hub.sibelhealth.com) backed by a live REST API at api.sibelhealth.com, and in August 2024
+  received two additional FDA clearances that let ANNE Chest and ANNE Limb interoperate with
+  third-party software applications through a Sibel software development kit. Neither that API nor
+  that SDK is publicly documented: there is no developer portal, no published OpenAPI or other
+  machine-readable contract, no public SDK package on any registry, and access is arranged through
+  the company sales and partnership process.'
 url: https://raw.githubusercontent.com/api-evangelist/sibel-health/refs/heads/main/apis.yml
+image: https://sibelhealth.com/wp-content/uploads/2023/03/sibel.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-27'
 modified: '2026-08-27'
 tags:
 - Company
-apis: []
+- Health
+- Healthcare
+- Medical Devices
+- Remote Patient Monitoring
+- Wearables
+- Digital Health
+- Vital Signs
+- Clinical Trials
+- Sensors
+- Internet of Things
+- Sleep
+apis:
+- name: Sibel Health ANNE Cloud API
+  description: 'The REST API behind Sibel Health''s ANNE cloud hubs. The base
+    https://api.sibelhealth.com/jsn/alpha is referenced directly by the JavaScript bundle of the
+    company''s own datahub.sibelhealth.com single-page application, and the host answers as an AWS
+    API Gateway deployment. Every path probed anonymously returns HTTP 403 with either
+    {"message":"Forbidden"} or {"message":"Missing Authentication Token"}; the CORS preflight
+    advertises Authorization and X-Api-Key as accepted credential headers and
+    DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT as accepted methods. No public documentation, OpenAPI
+    description, or developer portal for this API could be found. Recorded here as an observed,
+    customer-gated surface, not as a documented product.'
+  humanURL: https://sibelhealth.com/remote-patient-monitoring/
+  baseURL: https://api.sibelhealth.com/jsn/alpha
+  tags:
+  - Remote Patient Monitoring
+  - Vital Signs
+  - Wearables
+  - Health
+  properties:
+  - type: Authentication
+    url: authentication/sibel-health-authentication.yml
+  - type: RateLimits
+    url: rate-limits/sibel-health-rate-limits.yml
+  - type: Conventions
+    url: conventions/sibel-health-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/sibel-health-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: VulnerabilityDisclosure
+  url: security/sibel-health-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/sibel-health-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://sibelhealth.com/
+- type: Support
+  url: https://support.sibelhealth.com/hc/en-us
+- type: GitHubOrganization
+  url: https://github.com/sibelhealth
+- type: TermsOfService
+  url: https://sibelhealth.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://sibelhealth.com/privacy-policy/
+- type: SignUp
+  url: https://sibelhealth.com/request-demo/
+- type: Security
+  url: https://sibelhealth.com/security/
+- type: LLMsTxt
+  url: llms/sibel-health-llms.txt
+- type: Packages
+  url: packages/sibel-health-packages.yml
+- type: Conformance
+  url: conformance/sibel-health-conformance.yml
+- type: Plans
+  url: plans/sibel-health-plans-pricing.yml
+- type: Compliance
+  url: conformance/sibel-health-conformance.yml
+- type: Blog
+  url: https://sibelhealth.com/news/
+- type: Publications
+  url: https://sibelhealth.com/publications/
+x-enrichment:
+  date: '2026-08-27'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: 'Sibel Health runs a live AWS API Gateway at api.sibelhealth.com/jsn/alpha — the base its
+    own datahub.sibelhealth.com application calls — but every path, including /openapi.json and
+    /.well-known/*, returns 403 to an anonymous caller, there is no developer portal
+    (developer.sibelhealth.com has a valid certificate but never answers), and the SDK that two
+    August 2024 FDA clearances were granted for is released only to strategic partners, so the
+    contract is reachable only with an active tenant or signed agreement.'
+  evidence:
+  - url: https://api.sibelhealth.com/jsn/alpha
+    status: 403
+  - url: https://api.sibelhealth.com/openapi.json
+    status: 403
+  - url: https://developer.sibelhealth.com/
+    status: <no response>
+  - url: https://sibelhealth.com/page-sitemap.xml
+    status: 200
+  checked: '2026-08-27'

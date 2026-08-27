@@ -64,5 +64,40 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Sibel Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Sibel Health, Inc. is a Chicago-based medical technology company, with an international office in
+Seoul, South Korea, that builds the FDA-cleared **ANNE** platform for continuous, clinical-grade
+vital-sign monitoring — soft, flexible, rechargeable wearable sensors (ANNE Chest, ANNE Limb, ADAM),
+an ANNE Hub gateway, AI-enabled analytics, and an integrated mobile plus cloud software platform.
+It is deployed across neonatal, pediatric, maternal, adult inpatient, hospital-at-home, remote
+patient monitoring, sleep diagnostic, and decentralized clinical trial settings.
+
+## API surface
+
+Sibel Health operates a **real, live, and entirely undocumented** REST API.
+
+- **Base URL** — `https://api.sibelhealth.com/jsn/alpha`, read from the JavaScript bundle of Sibel's
+  own `datahub.sibelhealth.com` application rather than guessed.
+- **Gateway** — AWS API Gateway. Every anonymous request returns HTTP 403
+  (`{"message":"Forbidden"}` / `{"message":"Missing Authentication Token"}`). The CORS preflight
+  advertises `Authorization` and `X-Api-Key` as credential headers and
+  `DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT` as methods.
+- **No public contract** — no developer portal, no API reference, no OpenAPI, GraphQL, AsyncAPI,
+  WSDL or protobuf, no MCP server, no A2A agent card, and no `/.well-known/` document on any host.
+  `developer.sibelhealth.com` holds a valid TLS certificate but does not answer HTTP.
+- **SDK** — a Sibel SDK exists (two August 2024 FDA clearances specifically enabled ANNE Chest and
+  ANNE Limb to work with third-party applications built on it), but it is released to strategic
+  partners and is published on no package registry.
+
+## What Sibel does publish
+
+- **IEEE 11073 SDC certification** — ANNE One is, per Sibel's own June 2026 announcement, the first
+  wireless wearable monitoring platform certified to the IEEE 11073 Service-Oriented Device
+  Connectivity family of standards, alongside an EU MDR Class IIb CE Mark.
+- **Five FDA 510(k) clearances** — K223711, K240305, K240251, K242842, K253021, confirmed against
+  the FDA's own openFDA device database.
+- **A coordinated vulnerability disclosure policy** at
+  [sibelhealth.com/security](https://sibelhealth.com/security/) — `security@sibelhealth.com`, a
+  published PGP key, a 7-business-day acknowledgement commitment, and no bug bounty. It is not
+  served as `/.well-known/security.txt`, so it is not discoverable per RFC 9116.
+
+See [`apis.yml`](apis.yml) for the full machine-readable profile.

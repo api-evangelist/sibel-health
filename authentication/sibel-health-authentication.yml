@@ -1,0 +1,72 @@
+generated: '2026-08-27'
+method: probed
+source: 'anonymous HTTP probes of https://api.sibelhealth.com/jsn/alpha (2026-08-27); base URL read
+  from the JavaScript bundle of Sibel Health''s own datahub.sibelhealth.com single-page application'
+api: Sibel Health ANNE Cloud API
+summary: 'Sibel Health publishes no authentication documentation. Everything below was observed
+  directly on the wire against the live API host. There is no OpenAPI securitySchemes block to
+  derive from, so nothing here is derived — it is only what the server itself disclosed.'
+observed:
+  gateway: AWS API Gateway
+  gateway_evidence:
+  - 'response header x-amzn-errortype: MissingAuthenticationTokenException'
+  - response headers x-amz-apigw-id and x-amzn-requestid present on every response
+  anonymous_response:
+    status: 403
+    bodies:
+    - '{"message":"Forbidden"}'
+    - '{"message":"Missing Authentication Token"}'
+    content_type: application/json
+  cors:
+    access_control_allow_origin: '*'
+    access_control_allow_methods: DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT
+    access_control_allow_headers: Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token
+schemes:
+- id: authorization-header
+  type: http
+  location: header
+  name: Authorization
+  status: advertised
+  confidence: medium
+  evidence: 'Authorization is named in the Access-Control-Allow-Headers list the gateway returns,
+    so the API accepts a bearer/signed credential in that header. The token format is not disclosed
+    anonymously and is not documented publicly.'
+- id: api-key-header
+  type: apiKey
+  location: header
+  name: X-Api-Key
+  status: advertised
+  confidence: medium
+  evidence: 'X-Api-Key is named in the Access-Control-Allow-Headers list. This is the AWS API Gateway
+    usage-plan API key header; its presence indicates a key-based access tier, but no key issuance,
+    rotation, or scope documentation is published.'
+- id: aws-sigv4
+  type: http
+  location: header
+  name: X-Amz-Date / X-Amz-Security-Token
+  status: possible
+  confidence: low
+  evidence: 'X-Amz-Date and X-Amz-Security-Token appear in the allowed-headers list, which is
+    consistent with AWS SigV4 / IAM authorization, but this is also the AWS API Gateway default CORS
+    header set and therefore weak evidence on its own. Not asserted as the live scheme.'
+oauth:
+  documented: false
+  discovery_probed: true
+  note: '/.well-known/openid-configuration and /.well-known/oauth-authorization-server were probed on
+    both sibelhealth.com (404) and api.sibelhealth.com (403). No OAuth or OIDC discovery document is
+    served, so scopes/ is not applicable and no scopes artifact is written.'
+docs:
+  developer_portal: null
+  auth_documentation_url: null
+  note: 'developer.sibelhealth.com holds a valid TLS certificate (present in Certificate Transparency
+    logs) and resolves to 76.29.17.158, but does not answer HTTP — no response within a 12s deadline
+    on 2026-08-27. No other public documentation host was found.'
+evidence:
+- url: https://api.sibelhealth.com/jsn/alpha
+  status: 403
+- url: https://api.sibelhealth.com/
+  status: 403
+- url: https://developer.sibelhealth.com/
+  status: <no response>
+- url: https://sibelhealth.com/.well-known/openid-configuration
+  status: 404

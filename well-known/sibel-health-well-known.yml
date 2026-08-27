@@ -1,0 +1,55 @@
+generated: '2026-08-27'
+method: probed
+source: live GET probes of /.well-known/* on every Sibel Health host known to this profile
+note: 'Every probe missed. sibelhealth.com is a WordPress site that answers unknown paths with an
+  HTML 404 page; api.sibelhealth.com is an AWS API Gateway deployment that answers every path,
+  including /.well-known/*, with HTTP 403 {"message":"Forbidden"} before any routing occurs. No
+  /.well-known/ document of any kind is served. Because nothing returned a real document, NO
+  WellKnown or SecurityTxt pointer is emitted in apis.yml — this file records a measured absence,
+  not a presence. Note that Sibel Health DOES publish a coordinated vulnerability disclosure policy,
+  just as an HTML page at https://sibelhealth.com/security/ rather than as RFC 9116 security.txt;
+  see security/sibel-health-vulnerability-disclosure.yml.'
+hosts:
+- host: sibelhealth.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.sibelhealth.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null

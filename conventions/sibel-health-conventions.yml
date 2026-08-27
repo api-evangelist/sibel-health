@@ -1,0 +1,85 @@
+generated: '2026-08-27'
+method: probed
+source: 'anonymous HTTP observation of https://api.sibelhealth.com/jsn/alpha (2026-08-27). Sibel
+  Health publishes no API conventions documentation, so nothing here is quoted from docs.'
+api: Sibel Health ANNE Cloud API
+summary: 'Everything below is either directly observed on the wire or explicitly recorded as unknown.
+  Because the gateway rejects every anonymous request before routing, the observable surface is
+  limited to transport-level behaviour. No convention is inferred from the vendor category or from
+  what a platform like this "usually" does.'
+auth_style:
+  observed: header credential
+  detail: Authorization and X-Api-Key are both advertised in Access-Control-Allow-Headers. See
+    authentication/sibel-health-authentication.yml.
+error_envelope:
+  observed: true
+  shape: '{"message": "<string>"}'
+  content_type: application/json
+  rfc9457: false
+  note: 'This is the AWS API Gateway default envelope, seen on the pre-routing 403. It is not
+    evidence of the backend application''s own error shape, which was not reachable.'
+request_id_tracing:
+  observed: true
+  headers:
+  - x-amzn-requestid
+  - x-amz-apigw-id
+  - x-amzn-trace-id
+  note: AWS API Gateway correlation identifiers are returned on every response, including errors, so
+    a caller does have a request identifier to quote in a support ticket.
+idempotency:
+  supported: unknown
+  header: null
+  scope: null
+  retention: null
+  note: 'Undocumented and unobservable anonymously. NO Idempotency pointer is emitted in apis.yml —
+    asserting one here would claim a capability neither the provider nor this probe established.'
+pagination:
+  style: unknown
+  note: Undocumented; no contract to derive from.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+versioning:
+  observed: 'Path segment /jsn/alpha. See lifecycle/sibel-health-lifecycle.yml.'
+rate_limit_signalling:
+  observed: none
+  note: See rate-limits/sibel-health-rate-limits.yml.
+methods_accepted:
+  observed:
+  - DELETE
+  - GET
+  - HEAD
+  - OPTIONS
+  - PATCH
+  - POST
+  - PUT
+  source: Access-Control-Allow-Methods header returned by the gateway.
+  note: 'This establishes that the API has a WRITE surface — DELETE, PATCH, POST and PUT are all
+    advertised — which is what makes the reversibility question below meaningful rather than n/a.'
+reversibility:
+  grade: unknown
+  applicable: true
+  applicable_basis: 'The gateway advertises DELETE, PATCH, POST and PUT, so this is not a read-only
+    API and reversibility is a real question for any agent acting against it.'
+  reversal_operations: []
+  windows: []
+  docs: null
+  note: 'Sibel Health documents no reversal semantics of any kind. There is no cancel, undo, void,
+    restore or soft-delete operation named anywhere public, and no retention or restore window is
+    stated. This is deliberately NOT graded "na": the API demonstrably accepts destructive methods
+    against a clinical data platform, and an agent acting on it today has no published way to learn
+    whether a delete is recoverable. Recording an invented window here — even a plausible one like a
+    30-day restore — is the single error in this artifact that could cost a patient record, so
+    nothing is asserted. Upgrade this to documented or verified only from Sibel''s own documentation.'
+dry_run_mode:
+  supported: unknown
+  note: No sandbox or test mode is published; see the absence of a sandbox/ artifact.
+cross_links:
+  authentication: authentication/sibel-health-authentication.yml
+  rate_limits: rate-limits/sibel-health-rate-limits.yml
+  lifecycle: lifecycle/sibel-health-lifecycle.yml
+  conformance: conformance/sibel-health-conformance.yml
+evidence:
+- url: https://api.sibelhealth.com/jsn/alpha
+  status: 403

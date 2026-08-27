@@ -1,0 +1,50 @@
+generated: '2026-08-27'
+method: searched
+source: 'https://sibelhealth.com/ (full sitemap enumerated), https://support.sibelhealth.com/hc/en-us
+  (Zendesk help-center API, 26 articles, 1 category), and DNS probes for a status host (2026-08-27)'
+api: Sibel Health ANNE Cloud API
+summary: 'Sibel Health publishes no API lifecycle material. There is no versioning policy, no
+  deprecation policy, no Sunset/Deprecation header commitment, no SLA, no status page and no API
+  changelog. The one lifecycle signal the company does publish is regulatory rather than technical:
+  FDA 510(k) clearances and an EU MDR CE Mark, each of which is dated and each of which effectively
+  versions the product. Those are captured in conformance/sibel-health-conformance.yml.'
+versioning:
+  policy_published: false
+  scheme: path-segment
+  observed: 'The only public base URL, https://api.sibelhealth.com/jsn/alpha, carries a path segment
+    "alpha" that reads as a version or stage label. Sibel does not document what it means, whether a
+    beta or v1 stage exists, or what stability it implies. Recorded as observed, not as a documented
+    scheme.'
+deprecation:
+  policy_published: false
+  sunset_header: null
+  deprecation_header: null
+  note: No deprecation policy page exists and no RFC 8594 Sunset or Deprecation header could be
+    observed, because every anonymous request is rejected at the gateway.
+sla:
+  published: false
+status_page:
+  published: false
+  probed:
+  - host: status.sibelhealth.com
+    result: no DNS record
+  - host: trust.sibelhealth.com
+    result: no DNS record
+  note: No status or uptime page was found on any Sibel Health host, and no third-party status
+    provider (Statuspage, Instatus, Better Stack) page was found for the company.
+changelog:
+  api_changelog_published: false
+  company_news_page: https://sibelhealth.com/news/
+  note: 'https://sibelhealth.com/news/ is a dated company press listing, not an API changelog. It is
+    wired as a Blog pointer, not a ChangeLog pointer, because it announces regulatory clearances,
+    funding and partnerships rather than interface changes.'
+deprecated_operations: []
+deprecated_operations_note: No OpenAPI or other contract exists, so nothing can be derived.
+evidence:
+- url: https://sibelhealth.com/page-sitemap.xml
+  status: 200
+- url: https://sibelhealth.com/news/
+  status: 200
+- url: https://sibelhealth.zendesk.com/api/v2/help_center/en-us/articles.json
+  status: 200
+  note: 26 articles, all end-user sensor and app troubleshooting; none covers API versioning.

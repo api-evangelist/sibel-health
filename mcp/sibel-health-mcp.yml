@@ -1,0 +1,22 @@
+generated: '2026-08-27'
+method: searched
+source: 'searches of sibelhealth.com, support.sibelhealth.com, github.com/sibelhealth and general web
+  search for a Sibel Health MCP server (2026-08-27)'
+status: none
+summary: 'No Model Context Protocol server exists for Sibel Health — hosted or local. Nothing is
+  published by the company, nothing is listed in any MCP registry, and the GitHub organization has no
+  public repositories. No candidate tool list could be derived either, because Sibel publishes no
+  OpenAPI, GraphQL, or other machine-readable contract to derive tools from. No MCPServer pointer is
+  emitted in apis.yml: this file records a measured absence, not a surface.'
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+tools: []
+note: 'No endpoint was guessed or probed speculatively. The company''s only live API host,
+  api.sibelhealth.com, rejects every anonymous request at the AWS API Gateway layer with HTTP 403,
+  so an invented /mcp path there would be indistinguishable from any other rejected path and would
+  prove nothing.'

@@ -1,0 +1,55 @@
+generated: '2026-08-27'
+method: searched
+source: 'npm registry search, PyPI, Maven Central, GitHub org github.com/sibelhealth, Apple App Store
+  search API, Google Play, and Sibel Health press material (probed 2026-08-27)'
+official_package_count: 0
+summary: 'Sibel Health ships a software development kit — two August 2024 FDA clearances specifically
+  enabled ANNE Chest and ANNE Limb to work with third-party applications built against it — but that
+  SDK is not distributed through any public package registry and is not publicly downloadable. It is
+  released to strategic partners through the company''s commercial process. No first-party package
+  was found on npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, or crates.io, and
+  the public GitHub organization github.com/sibelhealth has zero public repositories.'
+packages: []
+known_but_undistributed:
+- name: Sibel Health ANNE SDK
+  official: true
+  registry: null
+  version: null
+  published: null
+  note: 'Real and provider-confirmed, but there is no registry entry, no download page, and no
+    documentation URL to read a version from, so version and published are null by measurement
+    rather than by omission. Sibel''s own August 2024 announcement is the only public description:
+    "The ANNE Chest and ANNE Limb wearable sensors are now compatible with third party software
+    applications that integrate with Sibel''s software development kit (SDK)." Access is arranged
+    through https://sibelhealth.com/request-demo/.'
+  evidence:
+  - url: https://www.prnewswire.com/news-releases/two-new-fda-clearances-for-sibel-health-enables-compatibility-of-advanced-wearable-sensors-to-3rd-party-software-solutions-302228024.html
+    status: 200
+registry_probes:
+- registry: npm
+  query: sibel
+  result: no first-party package (only an unrelated ebook-spam package matched)
+  status: 200
+- registry: pypi
+  query: sibel
+  result: 'the name "sibel" is taken by an unrelated Hunspell spellchecker (author Yi Xing); the name
+    "sibelhealth" is unregistered (404)'
+  status: 200
+- registry: maven-central
+  query: sibel
+  result: zero documents
+  status: 200
+- registry: github
+  query: orgs/sibelhealth/repos
+  result: organization exists (Sibel Health, Chicago IL, blog https://sibelhealth.com/) with 0 public
+    repositories
+  status: 200
+- registry: apple-app-store
+  query: sibel health / ANNE Care
+  result: no app published under a Sibel Health seller name was returned by the iTunes search API
+  status: 200
+- registry: google-play
+  query: com.sibelhealth.* candidate identifiers
+  result: 404 on every candidate identifier probed; the ANNE Care and Discovery mobile apps are
+    referenced by Sibel documentation but no public store listing was resolved
+  status: 404

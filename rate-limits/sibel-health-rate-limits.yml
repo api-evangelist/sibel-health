@@ -1,0 +1,25 @@
+generated: '2026-08-27'
+method: searched
+source: https://sibelhealth.com/ and https://support.sibelhealth.com/hc/en-us — no published API rate limits
+api: Sibel Health ANNE Cloud API
+limit_count: 0
+note: 'Sibel Health publishes no API rate-limit documentation. There is no developer portal, no API
+  reference, and the 26-article Zendesk help center covers sensor and app operation for study
+  coordinators, not API consumption. No RateLimit-*, X-RateLimit-* or Retry-After header was observed
+  on any anonymous response from https://api.sibelhealth.com — but note that every anonymous request
+  is rejected at the gateway with 403 before reaching a backend, so an authenticated caller may well
+  see limit headers this probe could not reach. Recorded as an honest zero: undocumented, not
+  measured as absent.'
+limits: []
+headers:
+  observed: []
+  observation_note: 'Anonymous 403 responses from api.sibelhealth.com carried only AWS API Gateway
+    headers (x-amzn-requestid, x-amz-apigw-id, x-amzn-trace-id, x-amzn-errortype) plus CORS headers.
+    No rate-limit signalling header was present.'
+exhaustion_status_code: null
+evidence:
+- url: https://api.sibelhealth.com/jsn/alpha
+  status: 403
+- url: https://sibelhealth.com/sitemap_index.xml
+  status: 200
+  note: Full page sitemap enumerated; contains no developer, docs, API-reference or rate-limit page.

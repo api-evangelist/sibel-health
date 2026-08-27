@@ -1,0 +1,19 @@
+generated: '2026-08-27'
+method: searched
+source: https://sibelhealth.com/request-demo/
+plan_count: 0
+plans: []
+note: 'Sibel Health publishes no pricing, plans, or tiers of any kind. The company sells FDA-cleared
+  medical devices and an accompanying cloud platform to hospitals, health systems, pharmaceutical
+  sponsors and clinical-research organisations, and routes every commercial conversation through a
+  "Request a Demo" contact form. The full page sitemap (https://sibelhealth.com/page-sitemap.xml,
+  HTTP 200) was enumerated on 2026-08-27 and contains no pricing page. This is an enterprise
+  contact-us-only motion, recorded as plan_count 0 rather than omitted.'
+sales_motion: enterprise-contact-only
+sign_up_url: https://sibelhealth.com/request-demo/
+evidence:
+- url: https://sibelhealth.com/request-demo/
+  status: 200
+- url: https://sibelhealth.com/page-sitemap.xml
+  status: 200
+  note: 28 pages enumerated; no /pricing/, /plans/ or equivalent.
