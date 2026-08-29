@@ -15,6 +15,17 @@ description: 'Sibel Health, Inc. is a Chicago-based medical technology company, 
   machine-readable contract, no public SDK package on any registry, and access is arranged through
   the company sales and partnership process.'
 url: https://raw.githubusercontent.com/api-evangelist/sibel-health/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://sibelhealth.com/wp-content/uploads/2023/03/sibel.png
 x-type: company
 x-source: harvest:secondary-market
