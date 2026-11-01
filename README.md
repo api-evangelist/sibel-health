@@ -64,40 +64,104 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Sibel Health, Inc. is a Chicago-based medical technology company, with an international office in
-Seoul, South Korea, that builds the FDA-cleared **ANNE** platform for continuous, clinical-grade
-vital-sign monitoring — soft, flexible, rechargeable wearable sensors (ANNE Chest, ANNE Limb, ADAM),
-an ANNE Hub gateway, AI-enabled analytics, and an integrated mobile plus cloud software platform.
-It is deployed across neonatal, pediatric, maternal, adult inpatient, hospital-at-home, remote
-patient monitoring, sleep diagnostic, and decentralized clinical trial settings.
+Sibel Health, Inc. is a Chicago-based medical technology company, with an international office in Seoul, South Korea, that builds the FDA-cleared ANNE platform for continuous clinical-grade vital-sign monitoring. The platform pairs soft, flexible, rechargeable wearable sensors — ANNE Chest (worn at the suprasternal notch), ANNE Limb, and the ADAM sensor — with an ANNE Hub gateway, AI-enabled data analytics, and an integrated mobile plus cloud software platform. It is used across neonatal, pediatric, maternal, adult inpatient, hospital-at-home, remote patient monitoring, sleep diagnostic and decentralized clinical trial settings. Sibel operates a customer-facing cloud (per-tenant hubs such as datahub.sibelhealth.com and emory.hub.sibelhealth.com) backed by a live REST API at api.sibelhealth.com, and in August 2024 received two additional FDA clearances that let ANNE Chest and ANNE Limb interoperate with third-party software applications through a Sibel software development kit. Neither that API nor that SDK is publicly documented: there is no developer portal, no published OpenAPI or other machine-readable contract, no public SDK package on any registry, and access is arranged through the company sales and partnership process.
 
-## API surface
+**Areas:** Company · Health · Healthcare · Medical Devices · Remote Patient Monitoring · Wearables · Digital Health · Vital Signs · Clinical Trials · Sensors · IoT · Sleep
 
-Sibel Health operates a **real, live, and entirely undocumented** REST API.
+## Sibel Health on APIs.io
 
-- **Base URL** — `https://api.sibelhealth.com/jsn/alpha`, read from the JavaScript bundle of Sibel's
-  own `datahub.sibelhealth.com` application rather than guessed.
-- **Gateway** — AWS API Gateway. Every anonymous request returns HTTP 403
-  (`{"message":"Forbidden"}` / `{"message":"Missing Authentication Token"}`). The CORS preflight
-  advertises `Authorization` and `X-Api-Key` as credential headers and
-  `DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT` as methods.
-- **No public contract** — no developer portal, no API reference, no OpenAPI, GraphQL, AsyncAPI,
-  WSDL or protobuf, no MCP server, no A2A agent card, and no `/.well-known/` document on any host.
-  `developer.sibelhealth.com` holds a valid TLS certificate but does not answer HTTP.
-- **SDK** — a Sibel SDK exists (two August 2024 FDA clearances specifically enabled ANNE Chest and
-  ANNE Limb to work with third-party applications built on it), but it is released to strategic
-  partners and is published on no package registry.
+Everything profiled for Sibel Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sibel-health/](https://apis.io/providers/sibel-health/)** — or go straight to one of the APIs or properties below.
 
-## What Sibel does publish
+### APIs (1)
 
-- **IEEE 11073 SDC certification** — ANNE One is, per Sibel's own June 2026 announcement, the first
-  wireless wearable monitoring platform certified to the IEEE 11073 Service-Oriented Device
-  Connectivity family of standards, alongside an EU MDR Class IIb CE Mark.
-- **Five FDA 510(k) clearances** — K223711, K240305, K240251, K242842, K253021, confirmed against
-  the FDA's own openFDA device database.
-- **A coordinated vulnerability disclosure policy** at
-  [sibelhealth.com/security](https://sibelhealth.com/security/) — `security@sibelhealth.com`, a
-  published PGP key, a 7-business-day acknowledgement commitment, and no bug bounty. It is not
-  served as `/.well-known/security.txt`, so it is not discoverable per RFC 9116.
+- [Sibel Health ANNE Cloud API](https://apis.io/apis/sibel-health/sibel-health-anne-cloud-api/) — The REST API behind Sibel Health's ANNE cloud hubs. The base https://api.sibelhealth.com/jsn/alpha is referenced directly by the JavaScript bundle of the…
 
-See [`apis.yml`](apis.yml) for the full machine-readable profile.
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Sibel Health Authentication](https://apis.io/security/sibel-health/sibel-health-authentication/)
+- [Sibel Health Domain Security](https://apis.io/security/sibel-health/sibel-health-domain-security/)
+- [Sibel Health Vulnerability Disclosure](https://apis.io/security/sibel-health/sibel-health-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Sibel Health Plans Pricing](https://apis.io/plans/sibel-health/sibel-health-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Sibel Health Rate Limits](https://apis.io/rate-limits/sibel-health/sibel-health-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://sibelhealth.com/)
+- [Sign up](https://sibelhealth.com/request-demo/)
+- [Support](https://support.sibelhealth.com/hc/en-us)
+- [Blog](https://sibelhealth.com/news/)
+- [Security](https://sibelhealth.com/security/)
+- [Terms of service](https://sibelhealth.com/terms-of-use/)
+- [Privacy policy](https://sibelhealth.com/privacy-policy/)
+- [GitHub](https://github.com/sibelhealth)
+
+## API Evangelist rating
+
+**Kin Score 23.7** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 42.1 |
+
+**Agent readiness 5.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.8** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sibel-health/](https://apis.io/providers/sibel-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Sibel Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sibel-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
